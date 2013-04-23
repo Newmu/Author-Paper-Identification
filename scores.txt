@@ -1,0 +1,3 @@
+0.776 = 2000 features linear svc 1000
+0.786 = 2000 features rbf svc 250
+0.792 = 1000 features rbf svc 1000
