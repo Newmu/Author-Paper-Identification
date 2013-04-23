@@ -90,36 +90,36 @@ def processPaperAuthor(papers,authors):
 			fields = data
 			print 'paperAuthor fields',fields
 		else:
-			if i < 2257250:
-				pId = data[0]
-				aId = data[1]
-				if pId in papers:
-					paper = papers[pId]
-					if 'Authors' in paper:
-						paper['Authors'].append(aId)
-					else:
-						paper['Authors'] = [aId]
+			# if i < 2257250:
+			pId = data[0]
+			aId = data[1]
+			if pId in papers:
+				paper = papers[pId]
+				if 'Authors' in paper:
+					paper['Authors'].append(aId)
 				else:
-					paper = {}
-					paper['Year'] = '0'
-					paper['ConferenceId'] = '0'
-					paper['JournalId'] = '0'
-					paper['Keyword'] = ''
-					paper['Title'] = ''
 					paper['Authors'] = [aId]
-					papers[pId] = paper
-				if aId in authors:
-					author = authors[aId]
-					if 'Papers' in author:
-						author['Papers'].append(pId)
-					else:
-						author['Papers'] = [pId]
+			else:
+				paper = {}
+				paper['Year'] = '0'
+				paper['ConferenceId'] = '0'
+				paper['JournalId'] = '0'
+				paper['Keyword'] = ''
+				paper['Title'] = ''
+				paper['Authors'] = [aId]
+				papers[pId] = paper
+			if aId in authors:
+				author = authors[aId]
+				if 'Papers' in author:
+					author['Papers'].append(pId)
 				else:
-					author = {}
-					author['Name'] = data[2]
-					author['Affiliation'] = data[3]
 					author['Papers'] = [pId]
-					authors[aId] = author
+			else:
+				author = {}
+				author['Name'] = data[2]
+				author['Affiliation'] = data[3]
+				author['Papers'] = [pId]
+				authors[aId] = author
 	print 'num papers',len(papers),'num authors',len(authors)
 	return papers,authors
 
