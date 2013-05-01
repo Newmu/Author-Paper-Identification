@@ -1,4 +1,10 @@
 import numpy as np
+from scipy.spatial.distance import cosine
+
+def angularDistance(u,v):
+	cosDist = cosine(u.todense(),v.todense())
+	angDist = 1-((2*np.arccos(cosDist))/np.pi)
+	return angDist
 
 def MAP(confirmed,guesses):
 	guesses = list(guesses)
